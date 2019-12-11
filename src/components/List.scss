@@ -1,0 +1,36 @@
+@import 'src/index';
+
+.List {
+    width: 100%;
+    min-height: 400px;
+    max-width: 50%;
+    margin-right: 20px;
+    padding: 1em 1em;
+    background-color: rgba($color-black, 0.5);
+    border-radius: 15px;
+    border: 1px solid $color-black;
+}
+
+.List__title {
+    padding: 1em 0;
+    border-bottom: 1px solid $color-black;
+}
+
+.List__item {
+    display: block;
+    padding: 5px 30px;
+    background-color: $color-white;
+    border-bottom: 1px solid red;
+    cursor: pointer;
+}
+
+.form__control {
+    display: block;
+    max-width: 100%;
+    padding: 5px 20px;
+    margin: 1em 0;
+
+    border-radius: 5px;
+    border: 1px solid $color-gray;
+    background-color: $color-white;
+}
