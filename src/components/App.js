@@ -12,34 +12,32 @@ class App extends Component {
         }
     }
 
-    handleSelectedTodo = id => {
+    updateLists = (todos, completed) => {
+        this.setState({ todos: todos, completed: completed })
+    }
+
+    handleSelected = id => {
         let selectedItem = this.state.todos.filter(
             item => parseInt(item.id) === parseInt(id)
         )
-        this.setState({
-            todos: this.state.todos.filter(
-                item => parseInt(item.id) !== parseInt(id)
-            ),
-            completed: [...selectedItem],
-        })
-    }
 
-    handleSelectedCompleted = id => {
-        let selectedItem = this.state.completed.filter(
-            item => parseInt(item.id) === parseInt(id)
+        let newTodos = this.state.todos.filter(
+            item => parseInt(item.id) !== parseInt(id)
         )
-        this.setState({
-            todos: [...selectedItem],
-            completed: this.state.completed.filter(
-                item => parseInt(item.id) !== parseInt(id)
-            ),
+
+        let newCompleted = this.state.completed
+        newCompleted.push({
+            id: this.state.completed.length + 1,
+            name: selectedItem[0].name,
         })
+
+        this.updateLists(newTodos, newCompleted)
     }
 
     handleNewTodo = name => {
         let newTodos = this.state.todos
         let newItem = {
-            id: this.state.todos.length,
+            id: this.state.todos.length + 1,
             name: name,
         }
 
@@ -55,13 +53,13 @@ class App extends Component {
                         title="Todos"
                         form={true}
                         listItems={this.state.todos}
-                        onSelected={this.handleSelectedTodo}
+                        onSelected={this.handleSelected}
                         onSubmited={this.handleNewTodo}
                     />
                     <List
                         title="Completed"
                         listItems={this.state.completed}
-                        onSelected={this.handleSelectedCompleted}
+                        onSelected={this.handleSelected}
                     />
                 </div>
             </div>
