@@ -13,3 +13,9 @@ body {
     font-weight: 400;
     font-size: calc(16px + 0.35vh);
 }
+
+input {
+    box-sizing: border-box;
+    padding: 0;
+    font-size: inherit;
+}

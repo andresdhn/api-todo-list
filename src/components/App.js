@@ -36,6 +36,17 @@ class App extends Component {
         })
     }
 
+    handleNewTodo = name => {
+        let newTodos = this.state.todos
+        let newItem = {
+            id: this.state.todos.length,
+            name: name,
+        }
+
+        newTodos.push(newItem)
+        this.setState({ todos: newTodos })
+    }
+
     render() {
         return (
             <div className="App">
@@ -45,6 +56,7 @@ class App extends Component {
                         form={true}
                         listItems={this.state.todos}
                         onSelected={this.handleSelectedTodo}
+                        onSubmited={this.handleNewTodo}
                     />
                     <List
                         title="Completed"

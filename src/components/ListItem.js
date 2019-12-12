@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './ListItem.scss'
 
 class ListItem extends Component {
     handleClick = e => {

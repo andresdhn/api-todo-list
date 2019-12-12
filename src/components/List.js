@@ -8,14 +8,20 @@ class List extends Component {
         this.props.onSelected(id)
     }
 
+    handleNewItem = name => {
+        this.props.onSubmited(name)
+    }
+
     render() {
         return (
             <div className="List">
                 <div className="List__title">
                     <h2>{this.props.title}</h2>
+                    {this.props.form && (
+                        <ListForm onSubmited={this.handleNewItem} />
+                    )}
                 </div>
                 <div className="List__content">
-                    {this.props.form && <ListForm />}
                     {this.props.listItems &&
                         this.props.listItems.map(item => {
                             return (
