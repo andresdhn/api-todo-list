@@ -15,6 +15,7 @@ class ListForm extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.props.onSubmited(this.state.name)
+        this.setState({ name: '' })
     }
 
     render() {

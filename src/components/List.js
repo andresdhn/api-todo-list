@@ -14,7 +14,11 @@ class List extends Component {
 
     render() {
         return (
-            <div className="List">
+            <div
+                className={`List ${
+                    this.props.title === 'Completed' ? 'List--completed' : ''
+                }`}
+            >
                 <div className="List__title">
                     <h2>{this.props.title}</h2>
                     {this.props.form && (
