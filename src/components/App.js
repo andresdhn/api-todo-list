@@ -34,6 +34,24 @@ class App extends Component {
         this.updateLists(newTodos, newCompleted)
     }
 
+    handleUncompleted = id => {
+        let selectedItem = this.state.completed.filter(
+            item => parseInt(item.id) === parseInt(id)
+        )
+
+        let newCompleted = this.state.completed.filter(
+            item => parseInt(item.id) !== parseInt(id)
+        )
+
+        let newTodos = this.state.todos
+        let newItem = {
+            id: this.state.todos.length + 1,
+            name: selectedItem[0].name,
+        }
+        newTodos.push(newItem)
+        this.updateLists(newTodos, newCompleted)
+    }
+
     handleNewTodo = name => {
         let newTodos = this.state.todos
         let newItem = {
@@ -59,7 +77,7 @@ class App extends Component {
                     <List
                         title="Completed"
                         listItems={this.state.completed}
-                        onSelected={this.handleSelected}
+                        onSelected={this.handleUncompleted}
                     />
                 </div>
             </div>
