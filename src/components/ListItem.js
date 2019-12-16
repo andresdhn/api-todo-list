@@ -13,7 +13,7 @@ class ListItem extends Component {
                 className="List__item"
                 onClick={this.handleClick}
             >
-                {this.props.name}
+                {this.props.title}
             </div>
         )
     }

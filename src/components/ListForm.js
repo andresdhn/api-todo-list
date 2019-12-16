@@ -4,18 +4,18 @@ class ListForm extends Component {
     constructor() {
         super()
         this.state = {
-            name: '',
+            title: '',
         }
     }
 
     handleChange = e => {
-        this.setState({ name: e.target.value })
+        this.setState({ title: e.target.value })
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.onSubmited(this.state.name)
-        this.setState({ name: '' })
+        this.props.onSubmited(this.state.title)
+        this.setState({ title: '' })
     }
 
     render() {
@@ -26,7 +26,7 @@ class ListForm extends Component {
             >
                 <input
                     className="form__control"
-                    value={this.state.name}
+                    value={this.state.title}
                     onChange={this.handleChange.bind(this)}
                 />
             </form>

@@ -7,9 +7,16 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            todos: [{ id: 1, name: 'uno' }],
+            todos: [],
             completed: [],
         }
+    }
+
+    componentDidMount() {
+        fetch('http://jsonplaceholder.typicode.com/todos?_page=1&_limit=5')
+            .then(response => response.json())
+            .then(data => this.setState({ todos: data }))
+            .catch(error => console.log(error))
     }
 
     updateLists = (todos, completed) => {
@@ -28,7 +35,7 @@ class App extends Component {
         let newCompleted = this.state.completed
         newCompleted.push({
             id: this.state.completed.length + 1,
-            name: selectedItem[0].name,
+            title: selectedItem[0].title,
         })
 
         this.updateLists(newTodos, newCompleted)
@@ -46,17 +53,17 @@ class App extends Component {
         let newTodos = this.state.todos
         let newItem = {
             id: this.state.todos.length + 1,
-            name: selectedItem[0].name,
+            title: selectedItem[0].title,
         }
         newTodos.push(newItem)
         this.updateLists(newTodos, newCompleted)
     }
 
-    handleNewTodo = name => {
+    handleNewTodo = title => {
         let newTodos = this.state.todos
         let newItem = {
             id: this.state.todos.length + 1,
-            name: name,
+            title: title,
         }
 
         newTodos.push(newItem)
@@ -68,14 +75,14 @@ class App extends Component {
             <div className="App">
                 <div className="container">
                     <List
-                        title="Todos"
+                        name="Todos"
                         form={true}
                         listItems={this.state.todos}
                         onSelected={this.handleSelected}
                         onSubmited={this.handleNewTodo}
                     />
                     <List
-                        title="Completed"
+                        name="Completed"
                         listItems={this.state.completed}
                         onSelected={this.handleUncompleted}
                     />

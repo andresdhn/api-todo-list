@@ -8,15 +8,15 @@ class List extends Component {
         this.props.onSelected(id)
     }
 
-    handleNewItem = name => {
-        this.props.onSubmited(name)
+    handleNewItem = title => {
+        this.props.onSubmited(title)
     }
 
     render() {
         return (
             <div
                 className={`List ${
-                    this.props.title === 'Completed' ? 'List--completed' : ''
+                    this.props.name === 'Completed' ? 'List--completed' : ''
                 }`}
             >
                 <div className="List__title">
@@ -32,7 +32,7 @@ class List extends Component {
                                 <ListItem
                                     key={item.id}
                                     id={item.id}
-                                    name={item.name}
+                                    title={item.title}
                                     onSelected={this.handleSelected}
                                 />
                             )
