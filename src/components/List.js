@@ -20,7 +20,7 @@ class List extends Component {
                 }`}
             >
                 <div className="List__title">
-                    <h2>{this.props.title}</h2>
+                    <h2>{this.props.name}</h2>
                     {this.props.form && (
                         <ListForm onSubmited={this.handleNewItem} />
                     )}
