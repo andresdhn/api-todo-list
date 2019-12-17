@@ -1,9 +1,9 @@
 ## API fed To-Do List
 
-Recently I was task to build this project in 60m, so I decided to complete it and give it my own twist using 
-flexbox Sass and an Rest API integration to Feed the initial component Monunt. 
+Recently I was task to build this project in 60m, so I've decided to extend it by giving it my own twist using 
+flexbox Sass and a Rest API integration to Feed the initial Component mount. 
 
-Public API I used is: 
+The public API I used is: 
 [https://jsonplaceholder.typicode.com ](https://jsonplaceholder.typicode.com)
 
-I recommend this to anyone who needs a quick integration for testing, worked pretty well. 
+I recommend it to anyone who needs a quick integration for testing, worked pretty well in my opinion. 
