@@ -13,7 +13,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('http://jsonplaceholder.typicode.com/todos?_page=1&_limit=5')
+        fetch('https://jsonplaceholder.typicode.com/todos?_page=1&_limit=5')
             .then(response => response.json())
             .then(data => this.setState({ todos: data }))
             .catch(error => console.log(error))
