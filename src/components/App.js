@@ -4,7 +4,6 @@ import Form from './Form'
 //
 function App() {
     const [todos, setTodos] = useState([])
-    const [completed, setCompleted] = useState([])
 
     const handleSubmit = todo => {
         setTodos([
@@ -28,11 +27,21 @@ function App() {
         setTodos(newTodos)
     }
 
+    const handleComplete = id => {
+        let newTodos = todos.map(todo => {
+            if (Number(todo.id) === Number(id)) {
+                todo.completed = !todo.completed
+            }
+            return todo
+        })
+        setTodos(newTodos)
+    }
+
     return (
         <div id="app" className="mt-5">
             <div className="container">
-                <div className="row">
-                    <div className="col col-md-6">
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
                         <div className="card bg-gray">
                             <div className="card-body">
                                 <h3>To-Dos</h3>
@@ -42,12 +51,10 @@ function App() {
                                     items={todos}
                                     onUpdate={handleUpdate}
                                     onDelete={handleDelete}
+                                    onComplete={handleComplete}
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className="col col-md-6">
-                        <List title="Completed" items={completed} />
                     </div>
                 </div>
             </div>

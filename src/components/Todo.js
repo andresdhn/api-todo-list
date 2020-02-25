@@ -5,27 +5,37 @@ const Todo = props => {
     const [edit, setEdit] = useState(false)
     const listEl = useRef(null)
 
-    const handleEdit = e => {
-        e.stopPropagation()
+    const handleEdit = () => {
         setEdit(!edit)
     }
 
-    const handleDelete = e => {
-        e.stopPropagation()
+    const handleDelete = () => {
         props.onDelete(listEl.current.id)
     }
 
-    const handleBlur = () => {
+    const handleComplete = () => {
+        props.onComplete(listEl.current.id)
+    }
+
+    const handleUpdate = () => {
         props.onUpdate(listEl.current.id, title)
         setEdit(false)
     }
 
     const renderItem = () => (
         <div className="d-flex justify-content-between">
+            <div
+                onClick={handleComplete}
+                className={`btn ${
+                    props.completed ? 'btn-outline-dark' : 'btn-outline-primary'
+                }`}
+            >
+                &#10003;
+            </div>
             <div onClick={handleEdit} className="btn flex-fill text-left">
                 {title}
             </div>
-            <div onClick={handleDelete} className="btn btn-outline-dark">
+            <div onClick={handleDelete} className="btn btn-outline-danger">
                 X
             </div>
         </div>
@@ -36,7 +46,7 @@ const Todo = props => {
             autoFocus
             onChange={e => setTitle(e.target.value)}
             value={title}
-            onBlur={handleBlur}
+            onBlur={handleUpdate}
             className="form-control"
         />
     )
@@ -45,7 +55,9 @@ const Todo = props => {
         <div
             id={props.id}
             ref={listEl}
-            className="list-group-item list-group-item-action "
+            className={`list-group-item list-group-item-action ${
+                props.completed ? 'list-group-item-secondary' : ''
+            }`}
         >
             {edit ? renderEdit() : renderItem()}
         </div>
