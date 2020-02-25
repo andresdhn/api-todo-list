@@ -1,30 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import List from './List'
+import Form from './Form'
 //
 function App() {
     const [todos, setTodos] = useState([])
     const [completed, setCompleted] = useState([])
 
-    const updateList = data => {
-        let todos = data.filter(todo => todo.completed === true)
-        let completed = data.filter(todo => todo.completed !== true)
-
-        setCompleted(completed)
-        setTodos(todos)
+    const handleSubmit = todo => {
+        setTodos([
+            ...todos,
+            { userId: 1, id: Date.now(), completed: false, title: todo },
+        ])
     }
 
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos?_page=1&_limit=10')
-            .then(res => res.json())
-            .then(json => updateList(json))
-    })
+    const handleUpdate = (id, newTodo) => {
+        let newTodos = todos.map(todo => {
+            if (Number(todo.id) === Number(id)) {
+                todo.title = newTodo
+            }
+            return todo
+        })
+        setTodos(newTodos)
+    }
+
+    const handleDelete = id => {
+        let newTodos = todos.filter(todo => Number(todo.id) !== Number(id))
+        setTodos(newTodos)
+    }
 
     return (
         <div id="app" className="mt-5">
             <div className="container">
-                <div className="row justify-content-md-center">
+                <div className="row">
                     <div className="col col-md-6">
-                        <List title="Todo" items={todos} />
+                        <div className="card bg-gray">
+                            <div className="card-body">
+                                <h3>To-Dos</h3>
+                                <Form onNewTodo={handleSubmit} />
+                                <br />
+                                <List
+                                    items={todos}
+                                    onUpdate={handleUpdate}
+                                    onDelete={handleDelete}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div className="col col-md-6">
                         <List title="Completed" items={completed} />
