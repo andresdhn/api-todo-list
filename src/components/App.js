@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import List from './List'
 import Form from './Form'
 //
 function App() {
     const [todos, setTodos] = useState([])
+
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/todos?_page=1&_limit=10')
+            .then(res => res.json())
+            .then(json => setTodos(json))
+            .catch(error => console.log(error))
+    }, [])
 
     const handleSubmit = todo => {
         setTodos([

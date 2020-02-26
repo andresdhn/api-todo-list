@@ -30,7 +30,7 @@ const Todo = props => {
                     props.completed ? 'btn-outline-dark' : 'btn-outline-primary'
                 }`}
             >
-                &#10003;
+                {props.completed ? '-' : '✓'}
             </div>
             <div onClick={handleEdit} className="btn flex-fill text-left">
                 {title}
